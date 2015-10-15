@@ -1,0 +1,36 @@
+{{!< default}}
+
+<header  role='banner' class="oak-header 
+	{{#if @blog.cover}}" style="background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}">
+	<span class="oak-overlay"></span>
+	<div class="oak-inner">	
+		<div>
+			{{#if @blog.logo}}
+				<a href="{{@blog.url}}"><img class="oak-header-logo" src="{{@blog.logo}}" alt="{{@blog.title}}"></a>
+			{{/if}}
+			<h1 class="oak-header-title">
+				<a href="{{@blog.url}}">{{@blog.title}}</a>
+			</h1>
+			<hr>
+			<p>{{@blog.description}}</p>
+		</div>
+	</div>	
+	{{> get-in-touch}}
+</header>
+
+<main role="main" class="oak-main">
+	<span class="oak-vertical-separator"></span>
+	<header>
+		<a target="_blank" href="{{@blog.url}}/rss" class="oak-button oak-subscribe ion-social-rss-outline" title="RSS Feed">
+			<span class="oak-hide-on-mobile">Subscribe</span>
+		</a>
+		<form class="oak-post-search" role="search">
+			<input type="text" class="oak-search" placeholder="Search posts here">
+			<span class="oak-search-icon ion-ios-search"></span>
+			<div class="oak-search-results"></div>
+		</form>
+	</header>
+	{{> loop}}
+
+	{{> footer}}
+</main>

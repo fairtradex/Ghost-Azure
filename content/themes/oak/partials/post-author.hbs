@@ -1,0 +1,22 @@
+{{#author}}
+<div class="oak-article-author">
+	<div class="oak-article-author-image" style="background-image: 
+	{{#if cover}}url({{cover}})
+	{{else}}none
+	{{/if}}">
+	{{#if image}}
+		<a href="{{url}}" class="oak-author-image" style="background-image: url({{	image}})"></a>
+	{{/if}}
+	</div>
+	<div class="oak-article-author-info">
+		<h3><a href="{{url}}">{{name}}</a></h3>
+		<p>{{bio}}</p>
+		{{#if location}}
+		<p class="ion-ios-location-outline"> {{location}}</p>
+		{{/if}}	
+		{{#if website}}
+		<p><a href="{{website}}" class="ion-ios-world-outline"> {{website}}</a></p>
+		{{/if}}
+	</div>
+</div>
+{{/author}}	

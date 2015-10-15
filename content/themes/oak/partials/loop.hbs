@@ -1,0 +1,99 @@
+{{!> Articles are divided in two collums}}
+<div class="oak-articles-columns">
+
+	{{!> First columns of articles}}
+	{{!> All even numbered articles (2nd, 4th, 6th...) in this column are hidden on devices with width > 768px}}
+	<div class="oak-articles-column">	
+		{{#foreach posts}}		
+		<article class="oak-article {{#if @even}}oak-hide-on-desktop{{/if}} {{post_class}}" role="article" itemscope itemtype="http://schema.org/Article">				
+			<header>
+				{{#if image}}
+				<div class="oak-article-cover">						
+					<img src={{image}} alt="{{image.name}}"/>
+					<a href="{{{url}}}">Read More</a>
+				</div>
+				{{/if}}					
+				<h1 class="oak-article-title" itemprop="headline">
+					<a href="{{{url}}}" rel="bookmark">
+						{{title}}
+					</a>
+				</h1>					
+				{{#if tags}}
+				<div class="oak-article-tags ion-ios-grid-view-outline">
+					{{tags separator=" / "}}
+				</div>	
+				{{/if}}		
+			</header>
+			<div class="oak-article-content" itemprop="articleBody">
+				{{excerpt words="40"}} ...
+			</div>			
+			<footer class="oak-article-footer">
+				<div class="oak-article-actions">
+					<a href="{{{url}}}" class="oak-button oak-read-more">
+						<span class="oak-hide-on-mobile">Read More</span>
+						<span class="oak-hide-on-desktop">More</span>
+						<span class="ion-ios-arrow-right"></span>
+					</a>
+					<div class="oak-social-share">
+						{{> social-share}}
+					</div>
+				</div>
+				<hr>
+				<time class="oak-article-info" datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished"> {{date format=' MMMM'}} {{date format='DD'}}, {{date format=' YYYY'}} by {{author}}</time>					
+			</footer>
+		</article>
+		{{/foreach}}
+	</div>
+
+	{{!> Second column of articles}} 
+	{{!> This column only consists even numbered articles (2nd, 4th, 6th...) and it is hiden on devices with width < 768px}}
+	<div class="oak-articles-column oak-hide-on-mobile">
+		{{#foreach posts}}
+		{{#if @even}}	
+		<article class="oak-article  {{post_class}}" role="article" itemscope itemtype="http://schema.org/Article">				
+			<header class="article-header">
+				{{#if image}}
+				<div class="oak-article-cover">						
+					<img src={{image}} alt="{{image.name}}"/>
+					<a href="{{{url}}}">Read More</a>
+				</div>
+				{{/if}}					
+				<h1 class="oak-article-title" itemprop="headline">
+					<a href="{{{url}}}" rel="bookmark">
+						{{title}}
+					</a>
+				</h1>					
+				{{#if tags}}
+				<div class="oak-article-tags ion-ios-grid-view-outline">
+					{{tags separator=" / "}}
+				</div>	
+				{{/if}}		
+			</header>
+			<div class="oak-article-content" itemprop="articleBody">
+				{{excerpt words="40"}} ...
+			</div>			
+			<footer class="oak-article-footer">
+				<div class="oak-article-actions">
+					<a href="{{{url}}}" class="oak-button oak-read-more">
+						<span class="oak-hide-on-mobile">Read More</span>
+						<span class="oak-hide-on-desktop">More</span>
+						<span class="ion-ios-arrow-right"></span>
+					</a>
+					<div class="oak-social-share">
+						{{> social-share}}
+					</div>
+				</div>
+				<hr>
+				<time class="oak-article-info" datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished"> {{date format=' MMMM'}} {{date format='DD'}}, {{date format=' YYYY'}} by {{author}}</time>					
+			</footer>
+		</article>
+		{{/if}}
+		{{/foreach}}
+	</div>
+</div>			
+
+{{#if pagination}}
+<div class="oak-pagination">
+	{{{pagination}}}
+</div>
+{{/if}}
